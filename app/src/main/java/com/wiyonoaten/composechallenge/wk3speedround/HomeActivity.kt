@@ -35,6 +35,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.BottomAppBar
 import androidx.compose.material.Card
+import androidx.compose.material.FabPosition
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.FloatingActionButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -60,6 +63,7 @@ import com.wiyonoaten.composechallenge.wk3speedround.data.SootheCollection
 import com.wiyonoaten.composechallenge.wk3speedround.ui.components.CustomTextField
 import com.wiyonoaten.composechallenge.wk3speedround.ui.theme.MyTheme
 import com.wiyonoaten.composechallenge.wk3speedround.ui.theme.account_circle
+import com.wiyonoaten.composechallenge.wk3speedround.ui.theme.play_arrow
 import com.wiyonoaten.composechallenge.wk3speedround.ui.theme.screen_content_padding_horiz
 import com.wiyonoaten.composechallenge.wk3speedround.ui.theme.search
 import com.wiyonoaten.composechallenge.wk3speedround.ui.theme.spa
@@ -81,6 +85,22 @@ class HomeActivity : BaseActivity() {
 private fun HomeScreen(isDarkTheme: Boolean = isSystemInDarkTheme()) {
     Scaffold(
         backgroundColor = MaterialTheme.colors.background,
+        floatingActionButton = {
+            FloatingActionButton(
+                backgroundColor = MaterialTheme.colors.primary,
+                elevation = FloatingActionButtonDefaults.elevation(0.dp),
+                onClick = { /*TODO*/ }
+            ) {
+                Icon(
+                    imageVector = play_arrow,
+                    contentDescription = null,
+                    tint = MaterialTheme.colors.onPrimary,
+                    modifier = Modifier.size(24.dp)
+                )
+            }
+        },
+        isFloatingActionButtonDocked = true,
+        floatingActionButtonPosition = FabPosition.Center,
         bottomBar = {
             BottomAppBar(
                 backgroundColor = MaterialTheme.colors.background,
@@ -146,6 +166,7 @@ private fun HomeScreen(isDarkTheme: Boolean = isSystemInDarkTheme()) {
                 CourseCategories(
                     itemList = ALIGN_YOUR_MIND_CATEGORIES
                 )
+                Spacer(modifier = Modifier.size(100.dp))
             }
         }
     }
