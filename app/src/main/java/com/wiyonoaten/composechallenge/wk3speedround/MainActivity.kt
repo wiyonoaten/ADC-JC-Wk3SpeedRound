@@ -15,47 +15,89 @@
  */
 package com.wiyonoaten.composechallenge.wk3speedround
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.wiyonoaten.composechallenge.wk3speedround.ui.components.BackgroundThemedScreen
+import com.wiyonoaten.composechallenge.wk3speedround.ui.components.PrimaryTextButton
+import com.wiyonoaten.composechallenge.wk3speedround.ui.components.SecondaryTextButton
+import com.wiyonoaten.composechallenge.wk3speedround.ui.components.ThemeDrawableResIdPair
 import com.wiyonoaten.composechallenge.wk3speedround.ui.theme.MyTheme
+import com.wiyonoaten.composechallenge.wk3speedround.ui.theme.screen_content_padding_horiz
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             MyTheme {
-                MyApp()
+                WelcomeScreen()
             }
         }
     }
 }
 
-// Start building your app here!
 @Composable
-fun MyApp() {
-    Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
+private fun WelcomeScreen(isDarkTheme: Boolean = isSystemInDarkTheme()) {
+    BackgroundThemedScreen(
+        drawableResPair = ThemeDrawableResIdPair(
+            darkId = R.drawable.ic_dark_welcome,
+            lightId = R.drawable.ic_light_welcome
+        ),
+        isDarkTheme = isDarkTheme
+    ){
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(screen_content_padding_horiz)
+        ) {
+            val context = LocalContext.current
+
+            Image(
+                imageVector = ImageVector.vectorResource(id = when(isDarkTheme) {
+                    true -> R.drawable.ic_dark_logo
+                    else -> R.drawable.ic_light_logo
+                }),
+                contentDescription = null,
+            )
+            Spacer(modifier = Modifier.size(32.dp))
+            PrimaryTextButton("Sign Up")
+            Spacer(modifier = Modifier.size(8.dp))
+            SecondaryTextButton(
+                text = "Log In",
+                onClick = {
+                    context.startActivity(Intent(context, LoginActivity::class.java))
+                }
+            )
+        }
     }
 }
 
 @Preview("Light Theme", widthDp = 360, heightDp = 640)
 @Composable
-fun LightPreview() {
+private fun LightPreview() {
     MyTheme {
-        MyApp()
+        WelcomeScreen()
     }
 }
 
 @Preview("Dark Theme", widthDp = 360, heightDp = 640)
 @Composable
-fun DarkPreview() {
-    MyTheme(darkTheme = true) {
-        MyApp()
+private fun DarkPreview() {
+    MyTheme(isDarkTheme = true) {
+        WelcomeScreen(isDarkTheme = true)
     }
 }
