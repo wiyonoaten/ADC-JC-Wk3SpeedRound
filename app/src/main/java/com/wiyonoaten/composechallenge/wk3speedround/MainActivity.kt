@@ -59,7 +59,7 @@ private fun WelcomeScreen(isDarkTheme: Boolean = isSystemInDarkTheme()) {
             lightId = R.drawable.ic_light_welcome
         ),
         isDarkTheme = isDarkTheme
-    ){
+    ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(screen_content_padding_horiz)
@@ -67,10 +67,12 @@ private fun WelcomeScreen(isDarkTheme: Boolean = isSystemInDarkTheme()) {
             val context = LocalContext.current
 
             Image(
-                imageVector = ImageVector.vectorResource(id = when(isDarkTheme) {
-                    true -> R.drawable.ic_dark_logo
-                    else -> R.drawable.ic_light_logo
-                }),
+                imageVector = ImageVector.vectorResource(
+                    id = when (isDarkTheme) {
+                        true -> R.drawable.ic_dark_logo
+                        else -> R.drawable.ic_light_logo
+                    }
+                ),
                 contentDescription = null,
             )
             Spacer(modifier = Modifier.size(32.dp))
