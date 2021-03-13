@@ -17,27 +17,48 @@ package com.wiyonoaten.composechallenge.wk3speedround.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.wiyonoaten.composechallenge.wk3speedround.R
 
 // Set of Material typography styles to start with
 val typography = Typography(
-    body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+    h1 = TextStyle(
+        fontFamily = FontFamily(Font(R.font.kulimpark_light)),
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
-    )
-        /* Other default text styles to override
+        fontSize = 28.sp,
+        letterSpacing = 1.15.sp
+    ),
+    h2 = TextStyle(
+        fontFamily = FontFamily(Font(R.font.kulimpark_regular)),
+        fontWeight = FontWeight.Normal,
+        fontSize = 15.sp,
+        letterSpacing = 1.15.sp
+    ),
+    h3 = TextStyle(
+        fontFamily = FontFamily(Font(R.font.lato_bold)),
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        letterSpacing = 0.sp
+    ),
+    body1 = TextStyle(
+        fontFamily = FontFamily(Font(R.font.lato_regular)),
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        letterSpacing = 0.sp
+    ),
     button = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp
+        fontFamily = FontFamily(Font(R.font.lato_bold)),
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        letterSpacing = 1.15.sp
     ),
     caption = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = FontFamily(Font(R.font.kulimpark_regular)),
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
+        fontSize = 12.sp,
+        letterSpacing = 1.15.sp
     )
-    */
 )
