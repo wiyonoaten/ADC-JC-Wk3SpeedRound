@@ -112,7 +112,8 @@ private fun HomeScreen(isDarkTheme: Boolean = isSystemInDarkTheme()) {
                 )
                 AppBarIconButton(
                     icon = account_circle,
-                    text = "Profile"
+                    text = "Profile",
+                    enabled = false
                 )
             }
         }
@@ -177,10 +178,12 @@ private fun RowScope.AppBarIconButton(
     icon: ImageVector,
     text: String,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {}
+    onClick: () -> Unit = {},
+    enabled: Boolean = true
 ) {
     IconButton(
         onClick = onClick,
+        enabled = enabled,
         modifier = modifier.weight(1.0f, true)
     ) {
         Column(
