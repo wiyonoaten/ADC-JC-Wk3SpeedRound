@@ -1,5 +1,6 @@
 package com.wiyonoaten.composechallenge.wk3speedround
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -16,6 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.input.TextFieldValue
@@ -55,6 +57,7 @@ private fun LoginScreen(isDarkTheme: Boolean = isSystemInDarkTheme()) {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(screen_content_padding_horiz)
         ) {
+            val context = LocalContext.current
             val emailAddressState = remember { mutableStateOf(TextFieldValue())}
             val passwordState = remember { mutableStateOf(TextFieldValue())}
 
@@ -83,7 +86,12 @@ private fun LoginScreen(isDarkTheme: Boolean = isSystemInDarkTheme()) {
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.size(8.dp))
-            PrimaryTextButton("Log In")
+            PrimaryTextButton(
+                text = "Log In",
+                onClick = {
+                    context.startActivity(Intent(context, HomeActivity::class.java))
+                }
+            )
             Text(
                 text = AnnotatedString.Builder().apply {
                     append("Don't have an account? ")
